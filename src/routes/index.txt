@@ -1,0 +1,603 @@
+<script>
+	let isPageLoaded = false; // Add a variable to track page loading
+
+	let isLoadingComplete = true;
+
+	function setLoadingComplete() {
+		isLoadingComplete = true;
+	}
+
+	// Simulating an async operation
+	setTimeout(setLoadingComplete, 10);
+
+	import { onDestroy, onMount } from "svelte";
+
+	let interval;
+
+	onMount(() => {
+		interval = setInterval(updateTime, 1000);
+	});
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
+
+	import {
+		Navigation,
+		Pagination,
+		Scrollbar,
+		A11y,
+		Mousewheel,
+	} from "swiper";
+	import { Swiper, SwiperSlide } from "swiper/svelte";
+
+	// Import Pages
+	import Details from "../components/pages/Details.svelte";
+	import Videos from "../components/pages/Videos.svelte";
+	import About from "../components/pages/About.svelte";
+	import Contact from "../components/pages/Contact.svelte";
+	import Home from "../components/pages/Home.svelte";
+
+	// Import Swiper styles
+	import "swiper/css";
+	import "swiper/css/navigation";
+	import "swiper/css/pagination";
+	import "swiper/css/scrollbar";
+
+	let swiper = null;
+
+	function onSwiper(e) {
+		const [s] = e.detail;
+		swiper = s;
+	}
+	$: console.log(swiper);
+
+	function goTo(page) {
+		let num = "";
+		switch (page) {
+			case "home":
+				num = 0;
+				break;
+			case "details":
+				num = 1;
+				break;
+			case "videos":
+				num = 2;
+				break;
+			case "about":
+				num = 3;
+				break;
+			case "contact":
+				num = 4;
+				break;
+			case "form":
+				num = 5;
+				break;
+
+			default:
+				num = 0;
+		}
+		try {
+			swiper.slideTo(num);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	let url = "";
+
+	onMount(() => (url = window.location.hash));
+
+	$: console.log(url);
+	$: switch (url) {
+		case "#home":
+			goTo("home");
+			break;
+		case "#details":
+			goTo("details");
+			break;
+		case "#videos":
+			goTo("videos");
+			break;
+		case "#about":
+			goTo("about");
+			break;
+		case "#contact":
+			goTo("contact");
+			break;
+		case "#form":
+			goTo("form");
+			break;
+	}
+
+	const swiperOptions = {
+		modules: [Navigation, Scrollbar, A11y, Mousewheel],
+		slidesPerView: "auto", // Allows auto-sizing of slides
+		loop: false, // Disable loop if not needed
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		scrollbar: {
+			el: ".swiper-scrollbar",
+		},
+		mousewheel: true, // Enable mousewheel control
+		freeMode: true, // Enable free mode for smooth scrolling
+	};
+
+	let isMenuExpanded = false;
+	function toggleMenu() {
+		isMenuExpanded = !isMenuExpanded;
+	}
+
+	let showOverlay = false;
+
+	onMount(() => {
+		const accepted = localStorage.getItem("cookiesAccepted");
+		if (!accepted) {
+			showOverlay = true;
+		}
+	});
+
+	function acceptCookies() {
+		// Set a cookie or perform any other necessary action
+		localStorage.setItem("cookiesAccepted", "true");
+		showOverlay = false;
+	}
+
+	function declineCookies() {
+		// Perform any necessary actions for declining cookies
+		showOverlay = false;
+	}
+</script>
+
+<main>
+	<!-- Loading screen -->
+	{#if !isLoadingComplete}
+		<div class="loading-overlay">
+			<p class="loading-text">UNITING A PEOPLE</p>
+			<div class="background-gif" />
+		</div>
+	{/if}
+	{#if isLoadingComplete}
+		<div class="cookies-overlay" class:showOverlay>
+			<div class="cookies-popup">
+				<p>
+					This website uses cookies to ensure you get the best
+					experience on our website.
+				</p>
+				<div>
+					<button
+						class="cookies-button accept"
+						on:click={() => acceptCookies()}>ACCEPT</button
+					>
+					<button
+						class="cookies-button decline"
+						on:click={() => declineCookies()}>DECLINE</button
+					>
+				</div>
+			</div>
+		</div>
+		<div class="menu-wrapper" class:expanded={isMenuExpanded}>
+			<div class="menu-toggle" on:click={toggleMenu}>
+				{#if isMenuExpanded}
+					NAVIGATION <!-- Show this text when expanded -->
+				{:else}
+					NAVIGATION <!-- Show this text when not expanded -->
+				{/if}
+			</div>
+
+			{#if isMenuExpanded}
+				<div class="navbg">
+					<nav class="menu">
+						<ul class="menu-main">
+							<li>
+								<a href="#home" on:click={() => goTo("home")}
+									>Home</a
+								>
+							</li>
+							<li>
+								<a
+									href="#details"
+									on:click={() => goTo("details")}>Services</a
+								>
+							</li>
+							<li>
+								<a
+									href="#videos"
+									on:click={() => goTo("videos")}>Videos</a
+								>
+							</li>
+							<li>
+								<a href="#about" on:click={() => goTo("about")}
+									>About</a
+								>
+							</li>
+							<li>
+								<a
+									href="#contact"
+									on:click={() => goTo("contact")}>Info</a
+								>
+							</li>
+							<li>
+								<a href="/form">Reach Out</a>
+							</li>
+						</ul>
+						<nav class="extra">
+							<ul class="social-media">
+								<li>
+									<a
+										class="instagram"
+										target="_blank"
+										href="https://www.instagram.com/unitedposthouse/"
+										title="video editing instagram"
+										>INSTAGRAM</a
+									>
+								</li>
+							</ul>
+
+							<ul class="privacy-links">
+								<li>
+									<a href="/privacy">Privacy Policy</a>
+								</li>
+							</ul>
+							<ul class="privacy-links">
+								<li>
+									<a href="/cookies">Cookies Policy</a>
+								</li>
+							</ul>
+						</nav>
+					</nav>
+				</div>
+			{/if}
+		</div>
+		<Swiper
+			modules={[Navigation, A11y, Scrollbar, Mousewheel]}
+			slidesPerView={1}
+			on:slideChange={() => console.log("slide change")}
+			on:swiper={onSwiper}
+			mousewheel={{ sensitivity: 0.5 }}
+			speed={750}
+		>
+			<SwiperSlide>
+				<div class="page">
+					<div class="padding">
+						<Home {goTo} />
+						<div class="container">
+							<video
+								autoplay="true"
+								muted="muted"
+								loop="true"
+								playsinline="true"
+								poster=""
+								preload="auto"
+								id="myVideo"
+							>
+								<source
+									src="Media/web1reel.mp4"
+									type="video/mp4"
+								/>
+							</video>
+						</div>
+					</div>
+				</div>
+			</SwiperSlide>
+			<SwiperSlide>
+				<div class="page">
+					<div class="padding">
+						<Details {goTo} />
+					</div>
+				</div>
+			</SwiperSlide>
+			<SwiperSlide>
+				<div class="page">
+					<div class="padding">
+						<Videos {goTo} />
+					</div>
+				</div>
+			</SwiperSlide>
+			<SwiperSlide>
+				<div class="page">
+					<div class="padding">
+						<About {goTo} />
+					</div>
+				</div>
+			</SwiperSlide>
+			<SwiperSlide>
+				<div class="page">
+					<div class="padding">
+						<Contact {goTo} />
+					</div>
+				</div>
+			</SwiperSlide>
+		</Swiper>
+	{/if}
+</main>
+
+<style>
+	.loading-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 9999;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	.cookies-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: 9998;
+		display: none;
+	}
+
+	.showOverlay {
+		display: block;
+	}
+
+	.cookies-popup {
+		position: fixed;
+		bottom: 20px;
+		left: 20px;
+		width: 200px;
+		background-color: #f2f2f2;
+		padding: 10px;
+		border-radius: 3px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+		font-family: Akkurat;
+		font-size: 12px;
+		text-transform: uppercase;
+		color: #333;
+		z-index: 9999; /* Increase the z-index */
+	}
+
+	.cookies-button {
+		background-color: #736f68;
+		color: white;
+		border: none;
+		padding: 6px 12px;
+		border-radius: 3px;
+		cursor: pointer;
+		margin-right: 6px;
+		text-transform: uppercase;
+	}
+
+	.cookies-button:hover {
+		background-color: #5f5b57;
+	}
+
+	.accept {
+		background-color: black;
+	}
+
+	.decline {
+		background-color: #736f68;
+	}
+
+	.social-media a {
+		font-size: 15px;
+		font-family: akkurat;
+	}
+
+	.privacy-links a {
+		font-size: 10px;
+		font-family: akkurat;
+	}
+
+	.extra {
+		/* Existing styles */
+		transition: all 0.5s ease;
+		z-index: 101;
+		position: fixed;
+		bottom: 0;
+		right: 0; /* Change left to right */
+		margin: 20px;
+	}
+
+	.extra ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		text-align: right;
+	}
+
+	.extra ul li {
+		display: inline-block;
+	}
+
+	.extra ul li a {
+		color: white;
+		text-decoration: none;
+		transition: all 0.5s ease;
+		text-transform: uppercase;
+	}
+
+	.extra ul li a:hover {
+		color: #736f68;
+	}
+
+	.menu-main {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		justify-content: flex-start;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.menu-main li:last-child {
+		margin-bottom: 0;
+	}
+
+	.menu-main li {
+		margin-bottom: 10px;
+		white-space: nowrap;
+	}
+
+	.menu-main a {
+		font-size: 30px;
+		color: white;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.menu-main li a:hover {
+		color: #736f68;
+		overflow: visible;
+		white-space: normal;
+	}
+
+	.menu-wrapper {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 100;
+		display: flex;
+		width: 0px;
+		height: 100vh;
+		padding: 10px;
+		background-color: black;
+		transition: width 0.5s ease; /* Add width transition for animation */
+		flex-direction: column;
+		align-items: flex-end;
+		justify-content: flex-start;
+	}
+
+	.menu-wrapper.expanded {
+		width: 300px; /* Adjust the expanded width as desired */
+	}
+	.menu-wrapper.expanded .menu-toggle {
+		transform: translateX(-100%) rotate(-90deg); /*Move the text out to the left when expanded */
+		transition: transform 0.5s ease; /* Add transition for text animation */
+	}
+
+	.menu-toggle {
+		font-size: 20px;
+		color: white;
+		position: fixed;
+		top: 80%;
+		right: 0;
+		transform: translateX(-10%) rotate(-90deg); /* Combine both transformations */
+		transition: transform 0.5s ease; /* Add transition for text animation */
+		opacity: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+
+	.menu-toggle:hover {
+		color: #736f68;
+		transition: all 0.3s ease;
+	}
+	.menu {
+		/* Existing styles */
+		transition: all 0.5s ease;
+		z-index: 101;
+		position: fixed;
+		top: 0;
+		right: 0; /* Change left to right */
+		margin: 20px;
+	}
+
+	.navbg {
+		background-color: black;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -117;
+		right: 0;
+		z-index: 999;
+	}
+
+	@font-face {
+		font-family: "Akkurat-Mono";
+		src: url("/fonts/Akkurat-Mono.otf") format("opentype");
+	}
+
+	main {
+		height: 100%;
+		position: relative;
+	}
+
+	.page {
+		height: 100%;
+	}
+
+	.page .padding {
+		padding-left: 0px;
+		height: 100%;
+	}
+
+	.container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	#myVideo {
+		min-width: 50%;
+		min-height: 50%;
+		width: auto;
+		height: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 35%;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.page .padding {
+			padding-left: 0px;
+		}
+	}
+	@media only screen and (max-width: 900px) {
+		.menu-toggle {
+			font-size: 25px;
+		}
+
+		.menu-main li {
+			margin-bottom: 5px;
+		}
+
+		.menu-main a {
+			font-size: 25px;
+		}
+	}
+	@media only screen and (max-width: 600px) {
+		.menu-wrapper.expanded {
+			width: 40%;
+		}
+		.menu-toggle {
+			font-size: 15px;
+		}
+		.menu-main li {
+			margin-bottom: 5px;
+		}
+
+		.menu-main a {
+			font-size: 15px;
+		}
+	}
+</style>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>United Post House</title>
+	<meta name="keywords"
+		content="Video editing Sacramento, Post house, Post production services sacramento, sacramento editing, sacramento editors, video editing sacramento, united post house, editors, video editors San Francisco, multimedia company, music videos, commercials, how to video edit, video editing near me, hiring a video editor, how to edit videos, video editors sacramento, danny matthews" />
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-T1EGQN2NES"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-T1EGQN2NES');
+	</script>
+	<script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="o0C3NT4AlsrwjHqJ"
+		data-version="062024"></script>
+	<!-- Hotjar Tracking Code -->
+	<script>
+		(function (h, o, t, j, a, r) {
+			h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+			h._hjSettings = { hjid: 2902301, hjsv: 6 };
+			a = o.getElementsByTagName('head')[0];
+			r = o.createElement('script'); r.async = 1;
+			r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+			a.appendChild(r);
+		})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+	</script>
+	<meta name="description"
+		content="United Post House specializes in Post Production for commercials and film. We are a full service post production outlet and offer multiple services">
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href="https://www.unitedposthouse.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Video editing: Post Production" />
+	<meta property="og:url" content="https://www.unitedposthouse.com/" />
+	<meta property="og:site_name" content="Video editing: Post Production" />
+	<meta charset="utf-8" />
+	<link rel="icon" href="/static/images/_0004_White.png" />
+	<link rel='stylesheet' href='/global.css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Custom CSS for cursor -->
+	<style>
+		/* Hide default cursor */
+		* {
+			cursor: none;
+		}
+
+		video {
+			cursor: none;
+			/* Ensure the custom cursor is used for videos */
+		}
+
+		/* Custom cursor using a circle symbol */
+		body::after {
+			content: '\25CF';
+			/* The symbol to use for cursor */
+			font-size: 35px;
+			/* Adjust size as needed */
+			color: #050505;
+			/* Default color, fully opaque */
+			position: fixed;
+			pointer-events: none;
+			/* Make sure it doesn’t interfere with clicks */
+			transform: translate(-50%, -50%) scale(var(--cursor-scale, 1));
+			/* Center and scale the symbol */
+			z-index: 9999;
+			/* Ensure it's above other elements */
+			left: var(--mouse-x);
+			top: var(--mouse-y);
+			transition: transform 0.2s ease, color 0.2s ease;
+			/* Smooth transition for scaling and color */
+			text-shadow:
+				0 0 3px #f9f9fa;
+		}
+
+		body {
+			background-color: #050505;
+		}
+
+		.cursor-transparent::after {
+			color: rgba(20, 20, 20, 0.7);
+			/* Adjust transparency with alpha value */
+			text-shadow: none;
+			/* Remove text shadow if needed */
+		}
+	</style>
+
+	%svelte.head%
+</head>
+
+<body>
+	<!-- Meta Pixel Code -->
+	<script>
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq) return; n = f.fbq = function () {
+				n.callMethod ?
+					n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+			n.queue = []; t = b.createElement(e); t.async = !0;
+			t.src = v; s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '666900534523441');
+		fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=666900534523441&ev=PageView&noscript=1" /></noscript>
+	<!-- End Meta Pixel Code -->
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9CSKRJ3XFW"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-9CSKRJ3XFW');
+	</script>
+
+	<div id="svelte">%svelte.body%</div>
+
+	<!-- JavaScript to update cursor position and scale -->
+	<script>
+		document.addEventListener('mousemove', (event) => {
+			document.body.style.setProperty('--mouse-x', `${event.clientX}px`);
+			document.body.style.setProperty('--mouse-y', `${event.clientY}px`);
+		});
+
+		document.addEventListener('mouseover', (event) => {
+			const target = event.target;
+			if (target.matches('a, button, input[type="button"], input[type="submit"], img, #video, #input')) {
+				document.body.classList.add('cursor-transparent');
+				document.body.style.setProperty('--cursor-scale', '2'); // Adjust scale as needed
+			} else {
+				document.body.classList.remove('cursor-transparent');
+				document.body.style.setProperty('--cursor-scale', '0.7'); // Default scale
+			}
+		});
+	</script>
+</body>
+
+</html>

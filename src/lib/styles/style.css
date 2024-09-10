@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Akkurat-Mono";
+    src: url("/fonts/Akkurat-Mono.otf") format("opentype");
+}
+
+@font-face {
+    font-family: Akkurat;
+    src:
+        url("https://d33wubrfki0l68.cloudfront.net/9f02a726216e5782250ec9dc5a23397ff9e61477/c8999/static/fonts/akkurat/akkuratmonollweb-regular.woff") format("woff"),
+        url("https://d33wubrfki0l68.cloudfront.net/230f284e1b4f73d5e1af3fed889650bd4f0c1891/ff891/static/fonts/akkurat/akkuratmonollweb-regular.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+}
+
+header {
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: none;
+}
+
+img {
+    padding-left: 10px;
+    width: 245px;
+    height: 136px;
+    transition: transform 0.5s ease;
+    transform: translateX(0px);
+}
+
+img:hover {
+    transform: translateX(10px);
+}
+
+@media only screen and (max-width: 1200px) {}
+
+@media only screen and (max-width: 992px) {}
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (max-width: 600px) {}

@@ -1,0 +1,33 @@
+<urlset
+    schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <!--
+ created with Free Online Sitemap Generator www.xml-sitemaps.com 
+-->
+    <url>
+        <loc>https://unitedposthouse.com/</loc>
+        <lastmod>2023-01-11T00:48:08+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://unitedposthouse.com/blog/</loc>
+        <lastmod>2023-01-11T00:48:08+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://unitedposthouse.com/blog/post/edit_to_beat/</loc>
+        <lastmod>2023-01-11T00:48:08+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://unitedposthouse.com/blog/post/the_jump_cut/</loc>
+        <lastmod>2023-01-11T00:48:08+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>
+            https://unitedposthouse.com/blog/post/make_video_editing_port/
+</loc>
+        <lastmod>2023-01-11T00:48:08+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+</urlset>
